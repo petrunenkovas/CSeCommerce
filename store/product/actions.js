@@ -27,7 +27,6 @@ export function addCart ({ commit, getters }, payload) {
     let data = payload.product
     data["quantity"] = payload.quantity
     cart.push(data)
-    cart.push(payload)
     commit("setCart", cart)
 }
 
