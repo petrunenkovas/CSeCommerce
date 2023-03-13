@@ -10,7 +10,7 @@ export default new Router({
     {
       path: '/',
       component: () => import('../Layout/Base.vue'),
-      children: [ 
+      children: [
         { path: '', component: () => import('../views/home/Products.vue') },
         { path: 'details/:idProduct', component: () => import('../views/home/Details.vue') },
         { path: 'cart', component: () => import('../views/home/Cart.vue') }
@@ -19,6 +19,6 @@ export default new Router({
     {
       path: '/login',
       component: () => import('../views/account/Login.vue')
-    },
+    }
   ]
 })

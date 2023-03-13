@@ -18,39 +18,39 @@
       </div>
     </div>
   </template>
-  
-  <script>
-  import { mapGetters, mapActions } from "vuex";
-  import AddToCart from "../../components/details/AddToCart"
 
-  export default {
-    data () {
-      return {
-        isInCardProp: false,
-      }
-    },
-    computed: {
-      ...mapGetters("account", ["user"]),
-      ...mapGetters("product", ["product"])
-    },
-    components: { AddToCart },
-    methods: {
-      ...mapActions("product", ["productDetails"]),
-    },
-    mounted() {
-      this.productDetails(this.$route.params.idProduct);
+<script>
+import { mapGetters, mapActions } from 'vuex'
+import AddToCart from '../../components/details/AddToCart'
+
+export default {
+  data () {
+    return {
+      isInCardProp: false
     }
-  };
-  </script>
+  },
+  computed: {
+    ...mapGetters('account', ['user']),
+    ...mapGetters('product', ['product'])
+  },
+  components: { AddToCart },
+  methods: {
+    ...mapActions('product', ['productDetails'])
+  },
+  mounted () {
+    this.productDetails(this.$route.params.idProduct)
+  }
+}
+</script>
 
-  <style scoped>
-  .container-fluid {
-    padding: 30px;
-  }
-  .image-product {
-    width: 100%;
-  }
-  .card * {
-    max-height: 85vh;
-  }
-  </style>
+<style scoped>
+.container-fluid {
+  padding: 30px;
+}
+.image-product {
+  width: 100%;
+}
+.card * {
+  max-height: 85vh;
+}
+</style>
