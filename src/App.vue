@@ -5,6 +5,14 @@
 </template>
 
 <style>
+:root {
+  --color-heading: #173c45;
+  --color-accent: #087f83;
+  --color-accent-hover: #07676a;
+  --color-surface: #f4f8f8;
+  --color-border: #e2ebeb;
+  --color-muted: #60757b;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

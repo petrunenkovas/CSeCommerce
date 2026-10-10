@@ -1,30 +1,20 @@
 <template>
   <div>
-      <div>
-          <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-              <router-link class="navbar-brand" to="/" CS-eCommerce></router-link>
-              <div class="ml-auto">
-                  <div v-if="user.photoURL">
-                      <img
-                          :src="user.photoURL"
-                          class="img-thumbnail profile-image"
-                          alt
-                      />
-                      <router-link class="btn-btn-primary my-2 my-sm-0" to="/cart">
-                          <img src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG38.png"
-                              width="50"
-                              alt
-                          />
-                          <span class="badge badge-danger badge-pill"> {{ cart.length }}</span>
-                      </router-link>
-                  </div>
-                  <router-link v-else class="btn btn-primary my-2 my-sm-0" to="/login">Login</router-link>
-              </div>
-          </nav>
+    <nav class="navbar navbar-dark fixed-top shop-nav">
+      <div class="container nav-content">
+        <router-link class="navbar-brand" to="/">CS eCommerce</router-link>
+        <div class="nav-actions">
+          <span v-if="user.uid" class="shopper-name">{{ user.displayName }}</span>
+          <router-link v-if="user.uid" class="nav-link" to="/cart">
+            Cart <span class="badge badge-light">{{ cart.length }}</span>
+          </router-link>
+          <router-link v-else class="nav-link" to="/login">Demo sign-in</router-link>
+        </div>
       </div>
-      <div class="page-container">
-          <router-view />
-      </div>
+    </nav>
+    <main class="page-container">
+      <router-view />
+    </main>
   </div>
 </template>
 
@@ -41,35 +31,25 @@ export default {
 </script>
 
 <style scoped>
-
-nav {
-  background-color: teal;
+.shop-nav {
+  background: #153b45;
+  box-shadow: 0 2px 12px rgba(14, 44, 52, .18);
 }
-.navbar-brand {
-  font-weight: bold;
-  font-size: 25px;
-  color: #ffffff ;
+.nav-content, .nav-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.profile-image {
-  width: 50px;
-  border-radius: 100% ;
-}
-.page-container {
-  padding-top: 81px;
-}
-.btn {
-  border-radius: 0%;
-  font-weight: bold;
-  background: teal;
-  border: teal;
-}
-.btn:hover {
-  background: #00b4b4;
-}
-input {
-  border-radius: 0%;
-}
-.btn:focus {
-  background: teal;
+.navbar-brand { font-weight: 700; letter-spacing: .02em; }
+.nav-actions { gap: 1rem; }
+.shopper-name { color: #d7e9ec; }
+.nav-link { color: #fff; font-weight: 600; }
+.nav-link:hover { color: #c4e5e6; }
+.page-container { padding: 90px 0 40px; }
+@media (max-width: 480px) {
+  .shopper-name { display: none; }
+  .navbar-brand { font-size: 1rem; }
+  .nav-actions { gap: .25rem; }
+  .page-container { padding-top: 78px; }
 }
 </style>

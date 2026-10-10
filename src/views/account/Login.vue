@@ -1,37 +1,11 @@
 <template>
-  <div>
-    <div class="container" style="padding-top: 10%">
-      <div class="row d-flex justify-content-center">
-        <div class="col-5 text-left login-form-container">
-          <div class="d-flex justify-content-center">
-            <img src="https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png" width="150" alt="">
-          </div>
-          <div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input
-                type="email"
-                class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-              />
-              <small
-                id="emailHelp"
-                class="form-text text-muted"
-              >We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" />
-            </div>
-            <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button @click="login()" type="submit" class="btn btn-primary btn-block">Login</button>
-          </div>
-        </div>
-      </div>
+  <div class="login-page">
+    <div class="login-card">
+      <router-link to="/" class="back-link">← Back to products</router-link>
+      <p class="eyebrow">Portfolio demo</p>
+      <h1>Explore as a demo shopper</h1>
+      <p>Enter demo mode to add products to the cart and try the simulated checkout. No account, payment, or real order is created.</p>
+      <button type="button" class="btn btn-primary btn-block" @click="login">Enter demo mode</button>
     </div>
   </div>
 </template>
@@ -48,24 +22,11 @@ export default {
 </script>
 
 <style scoped>
-.form-control {
-  border-radius: 0%;
-  height: 50px;
-}
-.login-form-container {
-  padding: 20px;
-  box-shadow: 0px 2px 5px 2px #888888;
-}
-.btn {
-  border-radius: 0%;
-  font-weight: bold;
-  background: teal;
-  border: teal;
-}
-.btn:hover {
-  background: #00b4b4;
-}
-.btn:focus {
-  background: teal;
-}
+.login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; background: var(--color-surface); }
+.login-card { width: 100%; max-width: 440px; padding: 2.5rem; background: #fff; border-radius: .75rem; box-shadow: 0 12px 35px rgba(16, 54, 61, .1); text-align: left; }
+.back-link { display: inline-block; margin-bottom: 2rem; color: var(--color-accent); }
+.eyebrow { color: var(--color-accent); text-transform: uppercase; letter-spacing: .12em; font-size: .8rem; font-weight: 700; }
+h1 { color: var(--color-heading); font-size: 2rem; }
+.btn-primary { margin-top: 2rem; padding: .75rem; background: var(--color-accent); border-color: var(--color-accent); }
+.btn-primary:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
 </style>

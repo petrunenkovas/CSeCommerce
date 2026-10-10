@@ -1,66 +1,46 @@
 <template>
-  <div class="row">
-    <div class="col-3">
-      <label class="sr-only" for="inlineFormInputName2">Quantity</label>
-      <input type="number" v-model="quantity" class="form-control mb-2 mr-sm-2" />
-    </div>
-    <button
-      v-if="!isInCardProp"
-      @click.stop="addCart({product, quantity})"
-      type="button"
-      class="btn btn-primary btn-lg btn-block col-9"
-    >ADD TO CART</button>
-    <button
-      v-else
-      @click.stop="removeCart(product.id)"
-      type="button"
-      class="btn btn-primary btn-lg btn-block col-9"
-    >REMOVE FROM CART</button>
+  <div class="cart-actions">
+    <template v-if="!inCart">
+      <label for="product-quantity">Quantity</label>
+      <div class="action-row">
+        <input id="product-quantity" type="number" min="1" step="1" v-model.number="quantity" class="form-control quantity-input">
+        <button type="button" class="btn btn-primary" :disabled="!validQuantity" @click="addCart({ product, quantity })">Add to cart</button>
+      </div>
+      <small v-if="!validQuantity" class="text-danger">Enter a whole number greater than zero.</small>
+    </template>
+    <button v-else type="button" class="btn btn-outline-secondary" @click="removeCart(product.id)">Remove from cart</button>
   </div>
 </template>
 
 <script>
-
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  props: ['product'],
+  props: {
+    product: { type: Object, required: true }
+  },
   data () {
-    return {
-      isInCardProp: false,
-      quantity: 1
-    }
+    return { quantity: 1 }
   },
   computed: {
-    ...mapState('product', ['cart'])
+    ...mapGetters('product', ['cart']),
+    inCart () {
+      return this.cart.some(item => item.id === this.product.id)
+    },
+    validQuantity () {
+      return Number.isSafeInteger(Number(this.quantity)) && Number(this.quantity) > 0 && this.quantity !== ''
+    }
   },
   methods: {
-    ...mapActions('product', ['addCart', 'removeCart']),
-    isInCart (id) {
-      for (let index = 0; index < this.cart.length; index++) {
-        const element = this.cart[index]
-        if (element.id === id) {
-          return true
-        }
-      }
-      return false
-    }
-  },
-  watch: {
-    product (val) {
-      this.isInCardProp = this.isInCart(val.id)
-    },
-    cart () {
-      this.isInCardProp = this.isInCart(this.product.id)
-    },
-    quantity (val) {
-      if (val <= 0) {
-        this.quantity = 1
-      }
-    }
+    ...mapActions('product', ['addCart', 'removeCart'])
   }
 }
 </script>
 
 <style scoped>
+.cart-actions { max-width: 380px; }
+.action-row { display: flex; gap: .75rem; }
+.quantity-input { width: 90px; }
+.btn-primary { background: var(--color-accent); border-color: var(--color-accent); }
+.btn-primary:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
 </style>
