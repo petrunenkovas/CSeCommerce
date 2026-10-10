@@ -6,9 +6,20 @@ Originally built as a practice project focused on component-based interfaces, ro
 
 ## Preview
 
-<!-- Add a screenshot or GIF here -->
+[Live demo](https://petrunenkovas.github.io/CSeCommerce/#/)
 
-<!-- Add a live demo link if available -->
+<table>
+  <tr>
+    <th>Catalog</th>
+    <th>Product details</th>
+    <th>Cart</th>
+  </tr>
+  <tr>
+    <td><a href="docs/screenshots/catalog.png"><img src="docs/screenshots/catalog.png" alt="Product catalog" width="300"></a></td>
+    <td><a href="docs/screenshots/product-details.png"><img src="docs/screenshots/product-details.png" alt="Product details" width="300"></a></td>
+    <td><a href="docs/screenshots/cart.png"><img src="docs/screenshots/cart.png" alt="Shopping cart" width="300"></a></td>
+  </tr>
+</table>
 
 ## Features
 
